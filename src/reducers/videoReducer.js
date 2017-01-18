@@ -6,7 +6,7 @@ export default function (state = initialState, action) {
     case types.SHUTTER_VIDEOS_SUCCESS:
       return [...state, action.videos];
     case types.SELECTED_VIDEO:
-      return [...state, action.video];
+      return {...state, action.video};
     default:
       return state;
   }
