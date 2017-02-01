@@ -1,11 +1,15 @@
 import React , { Component } from 'react';
-import { shutterStockVideos, flickrImages } from '../api/api';
+import { connect } from 'react-redux';
+import { searchMediaAction } from '../actions/mediaActions';
 
 class MediaGalleryPage extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount() {
-    shutterStockVideos('rain').then(videos => console.log(videos, 'videos'));
-    flickrImages('rain').then(images => console.log(images, 'images'));
+    let { dispatch } = this.props;
+    dispatch(searchMediaAction('rain'));
   }
 
   render() {
@@ -13,4 +17,11 @@ class MediaGalleryPage extends Component {
   }
 }
 
-export default MediaGalleryPage;
+const mapStateToProps = ({ images, videos }) => ({
+  videos: videos[0],
+  selectedVideo: videos.selectedVideo,
+  images: images[0],
+  selectedImage: images.selectedImage
+});
+
+export default connect(mapStateToProps)(MediaGalleryPage);

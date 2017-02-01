@@ -1,4 +1,4 @@
-import * as types from '../constants/actionsTypes';
+import * as types from '../constants/actionTypes';
 
 export const selectImageAction = (image) => ({
   type: types.SELECTED_IMAGE,
